@@ -15,8 +15,8 @@ public:
 
     // Implémentation des méthodes virtuelles
     void draw() const override;
-    void update() override = 0; // méthode virtuelle pure
-
+    void update() override;
+    
     // Autres méthodes
     bool isAlive() const;
     const std::string& getName() const;

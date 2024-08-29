@@ -1,38 +1,42 @@
-#include "Vector2d.hpp"
+#include "Character.hpp"
+#include "Decor.hpp"
+#include "Sword.hpp"
+#include "Bow.hpp"
+#include "Spear.hpp"
+
+
+#include <iostream>
 
 int main() {
-    Vector2D v1(1, 2);
-    Vector2D v2(3, 4);
 
-    Vector2D v3 = v1 + v2;
-    v3.print();
+    auto character = new Character("Alice", 100, 0.0, 0.0);
+    auto decor = new Decor(1.0, 1.0);
+    
+    character->draw();
+    decor->draw();
 
-    Vector2D v4 = v1 - v2;
-    v4.print();
+    character->update();
+    decor->update();
 
-    Vector2D v5 = v1 * 2;
-    v5.print();
+    character->draw();
+    decor->draw();
 
-    Vector2D v6 = v1 / 2;
-    v6.print();
+    auto primaryWeapon = new Sword();
+    auto secondaryWeapon = new Bow();
+    auto tertiaryWeapon = new Spear();
 
-    double dotProduct = v1 * v2;
-    std::cout << "Dot product: " << dotProduct << std::endl;
+    primaryWeapon->attack(*character);
+    secondaryWeapon->attack(*character);
+    tertiaryWeapon->attack(*character);
+    
 
-    double norm = v1.norm();
-    std::cout << "Norm: " << norm << std::endl;
-
-    v1.normalize();
-    v1.print();
-
-    Vector2D v7;
-    v7.print();
-
-    v7 = v2 + v3;
-    v7.print();
-
-    double distanceV1V7m = v7.distance(v1);
-    std::cout << "Distance between v1 and v7: " << distanceV1V7m << std::endl;
+    character->draw();
+    if (!character->isAlive()) {
+        std::cout << "Character is dead" << std::endl;
+    }
+    else {
+        std::cout << "Character is alive avec "<< character->getHealthPoints() << "points de vie" << std::endl;
+    }
 
     return 0;
 }

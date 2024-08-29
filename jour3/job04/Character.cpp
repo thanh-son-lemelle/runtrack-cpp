@@ -8,6 +8,11 @@ void Character::draw() const {
     std::cout << "Drawing character " << name << " at (" << getX() << ", " << getY() << ")" << std::endl;
 }
 
+void Character::update() {
+    // position of the character is updated
+    setX(getX() + 1);
+}
+
 bool Character::isAlive() const {
     return healthPoints > 0;
 }
